@@ -51,14 +51,13 @@ const getIsAliveDetermination = (currentlyAlive, numberOfLivingNeighbors) => {
 }
 
 function advance() {
-  let ourNewMatrix = getFreshMatrix()
-
-  const theCurrentMatrix = getCurrentMatrix()
-  for (let i = 0; i < theCurrentMatrix.length; i++) {
-    const currentlyAlive = theCurrentMatrix[i].isAlive
-    const thisOneShouldBeAlive = getIsAliveDetermination(currentlyAlive, getLifeCount(i, theCurrentMatrix))
-    ourNewMatrix[i].isAlive = thisOneShouldBeAlive
-  }
+  const ourNewMatrix = getCurrentMatrix().map((el, ix, ar) => {
+    return {
+      x: el.x,
+      y: el.y,
+      isAlive: getIsAliveDetermination(ar[ix].isAlive, getLifeCount(ix, ar))
+    }
+  })
 
   currentMatrix = ourNewMatrix
   populateMatrix(ourNewMatrix)
