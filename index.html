@@ -4,42 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet" type="text/css">
     <title>The Game of Life</title>
-    <style>
-        div#matrix-container {
-            width: 400px;
-            margin: 0;
-        }
-
-        div#matrix-container div {
-            display: inline-block;
-            margin: -3px -3px;
-            width: 20px;
-            height: 20px;
-            background-color: #555555;
-            border: 1px solid violet;
-        }
-
-        div#matrix-container div.alive {
-            background-color: lime;
-        }
-
-        .dead {
-            background-color: #555555;
-        }
-
-        body {
-            background-color: #555555;
-        }
-
-        button {
-            background-color: black;
-            border: 1px solid violet;
-            color: violet;
-            padding: .5rem 1rem;
-            border-radius: .5rem;
-        }
-    </style>
 </head>
 
 <body>
@@ -56,6 +22,12 @@
             onclick="advance()">
             &gt;&gt;
         </button>
+        <label id="population">
+            0
+        </label>
+        <label id="lifeCycles">
+            0
+        </label>
     </div>
 </body>
 

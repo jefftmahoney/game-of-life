@@ -59,6 +59,13 @@ function advance() {
     }
   })
 
+  const currentCount = ourNewMatrix.filter(x => x.isAlive === true).length
+  document.getElementById('population').innerHTML = currentCount
+
+  let lifeCycles = parseInt(document.getElementById('lifeCycles').innerText, 10)
+  lifeCycles++
+  document.getElementById('lifeCycles').innerHTML = lifeCycles
+
   currentMatrix = ourNewMatrix
   populateMatrix(ourNewMatrix)
 }
@@ -75,7 +82,6 @@ function getNewMatrix() {
   return freshMatrix
 }
 
-let weAreOnFirstMatrix = true
 let currentMatrix = []
 
 const getCurrentMatrix = () => {
@@ -95,13 +101,16 @@ const getFreshMatrix = () => {
 }
 
 function processKeyDown(kde) {
-  console.log('kde')
-  console.log(kde)
-  if (kde.key === "ArrowRight") {
-    advance()
-  }
-  if (kde.code === "Space") {
-    fillContainer()
+  switch (kde.code) {
+    case 'ArrowRight':
+      advance()
+      break
+    case 'Space':
+
+      fillContainer()
+      break
+    default:
+      return
   }
 }
 
@@ -115,6 +124,10 @@ const populateMatrix = (matrixToUse) => {
 }
 
 const fillContainer = () => {
+
+  document.getElementById('population').innerHTML = 0
+  document.getElementById('lifeCycles').innerHTML = 0
+
   let freshNodes = []
   for (let i = 0; i < 20; i++) {
     for (let j = 0; j < 20; j++) {
