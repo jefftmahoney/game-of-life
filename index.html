@@ -14,12 +14,12 @@
     <script src="game-of-life.js"></script>
     <br>
     <div id="button-container">
-        <button onclick="fillContainer()">
-            Setup
+        <button onclick="matrixToGrid()">
+            Setup | Reset
         </button>
         <button id="forwards"
             title="Click to go forward one life step. You can also advance by pressing your right arrow key."
-            onclick="advance()">
+            onclick="moveForward()">
             &gt;&gt;
         </button>
         <label id="population">
@@ -28,6 +28,9 @@
         <label id="lifeCycles">
             0
         </label>
+        <input type="text" maxlength="1" name="frequency" id="frequencyBox">
+        <br><br>
+        <textarea id="historyData" cols="50" rows="5"></textarea>
     </div>
 </body>
 
