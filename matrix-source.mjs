@@ -1,10 +1,19 @@
 export default class Matrix {
 
-    static generate() {
+    /**
+     * Create a brand-new Matrix.
+     * @param rate The percentage of cells which should begin 
+     * the simulation in a non-alive (dead) state, expressed as an 
+     * integer (e.g. 70 for 70 percent)
+     */
+    static generate(rate) {
+
+        const rateToUse = rate ? (rate/100) : 0.7
         let freshMatrix = []
+
         for (let i = 0; i < 20; i++) {
             for (let j = 0; j < 20; j++) {
-                const iAmAlive = Math.random() > 0.7
+                const iAmAlive = Math.random() > rateToUse
                 const nooNode = { x: i, y: j, alive: iAmAlive }
                 freshMatrix.push(nooNode)
             }

@@ -1,8 +1,8 @@
 import Matrix from './matrix-source.mjs'
 
-function cycle() {
+function cycle(rate) {
     let currentMatrix = []
-    let previousMatrix = Matrix.generate()
+    let previousMatrix = Matrix.generate(rate)
 
     let currentPopulation = 0
     let previousPopulation = previousMatrix.filter(x => x.alive === true).length
@@ -27,7 +27,7 @@ function cycle() {
 
 let total = 0
 for (let i = 1; i <= 100; i++) {
-    let currentTotal = cycle()
+    let currentTotal = cycle(5)
     total += currentTotal
     console.log(`iteration #${i}: ${currentTotal}`)
 }
