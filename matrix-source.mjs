@@ -8,7 +8,7 @@ export default class Matrix {
      */
     static generate(rate) {
 
-        const rateToUse = rate ? (rate/100) : 0.7
+        const rateToUse = rate ? (rate/100) : 0
         let freshMatrix = []
 
         for (let i = 0; i < 20; i++) {
@@ -62,6 +62,14 @@ export default class Matrix {
             return true
         else
             return false
+    }
+
+    static getUpdated(matrixToExamine, nodeToAdjust) {
+        return matrixToExamine.map(node => {
+            const thisIsTheNodeWePicked = (node.x === nodeToAdjust.x && node.y === nodeToAdjust.y)
+            node.alive = thisIsTheNodeWePicked ? nodeToAdjust.alive : node.alive
+            return node
+        })
     }
 
     static advance(matrixToAdvance, isAliveFn, lifeCountFn) {

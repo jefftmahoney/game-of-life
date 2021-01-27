@@ -1,9 +1,14 @@
 class Matrix {
 
+  /**
+   * Create a brand-new Matrix.
+   * @param rate The percentage of cells which should begin 
+   * the simulation in a non-alive (dead) state, expressed as an 
+   * integer (e.g. 70 for 70 percent)
+   */
   static generate(rate) {
 
-      const rateToUse = rate ? (rate/100) : 0.7
-
+      const rateToUse = rate ? (rate/100) : 0
       let freshMatrix = []
       for (let i = 0; i < 20; i++) {
           for (let j = 0; j < 20; j++) {
@@ -58,6 +63,14 @@ class Matrix {
           return false
   }
 
+  static getUpdated(matrixToExamine, nodeToAdjust) {
+      return matrixToExamine.map(node => {
+          const thisIsTheNodeWePicked = (node.x === nodeToAdjust.x && node.y === nodeToAdjust.y)
+          node.alive = thisIsTheNodeWePicked ? nodeToAdjust.alive : node.alive
+          return node
+      })
+  }
+
   static advance(matrixToAdvance, isAliveFn, lifeCountFn) {
       return matrixToAdvance.map((el, ix, ar) => {
           return {
@@ -86,29 +99,51 @@ function processKeyDown(kde) {
       matrixToGrid()
       break
     case 'Enter':
-      matrixToGrid()
+      matrixToGrid(70)
       break
     default:
       return
   }
 }
 
-const matrixToGrid = () => {
-  const NOT_INITIALLY_ALIVE_PERCENTAGE = 70
-  const theNodes = Matrix.generate(NOT_INITIALLY_ALIVE_PERCENTAGE).map((el, ix, ar) => {
-    return `<div data-x="${el.x}" data-y="${el.y}" data-alive="${el.alive}" class="${el.alive === true ? 'alive' : ''}"></div>`
+function processNodeClick(xParam,yParam,aliveParam) {
+
+  // get the current matrix
+  const currentMatrix = matrixFromGrid()
+
+  // generate a new one with the node values
+  const theNode = {x:xParam, y:yParam, alive:!aliveParam}
+  const newerMatrix = Matrix.getUpdated(currentMatrix, theNode)
+
+  // populate the grid
+  matrixBackToGrid(newerMatrix)
+}
+
+function markupFromNode(node) {
+  return `<div data-x="${node.x}" 
+    data-y="${node.y}" 
+    data-alive="${node.alive}" 
+    class="${node.alive === true ? 'alive' : ''}" 
+    onclick="processNodeClick(${node.x},${node.y},${node.alive})">
+  </div>` 
+}
+
+function matrixToGrid(rate) {
+  const NOT_INITIALLY_ALIVE_PERCENTAGE = rate ? rate : 100
+  const theNodes = Matrix.generate(NOT_INITIALLY_ALIVE_PERCENTAGE).map((node) => {
+    return markupFromNode(node)
   })
   document.getElementById('matrix-container').innerHTML = theNodes
 }
 
-const matrixBackToGrid = (matrixToUse) => {
-  const theNodes = matrixToUse.map((el, ix, ar) => {
-    return `<div data-x="${el.x}" data-y="${el.y}" data-alive="${el.alive}" class="${el.alive === true ? 'alive' : ''}"></div>`
+function matrixBackToGrid(matrixToUse) {
+  const theNodes = matrixToUse.map((node) => {
+    return markupFromNode(node)
   })
   document.getElementById('matrix-container').innerHTML = theNodes
 }
 
-const matrixFromGrid = () => {
+function matrixFromGrid() {
   const theNodes = Array.from(document.getElementById('matrix-container').children)
   return theNodes.map((el, ix, ar) => {
     return {

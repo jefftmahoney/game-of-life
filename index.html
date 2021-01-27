@@ -8,29 +8,36 @@
     <title>The Game of Life</title>
 </head>
 
-<body>
+<body onload="matrixToGrid(70)">
     <div id="matrix-container">
     </div>
     <script src="game-of-life.js"></script>
     <br>
     <div id="button-container">
-        <button onclick="matrixToGrid()">
-            Setup | Reset
+        <button id="setupButton" 
+            title="Click this button to populate the grid with randomly-live-stated cells" 
+            onclick="matrixToGrid(70)">
+            Setup
+        </button>
+        <button id="resetButton" 
+            title="Click this button to clear the grid (i.e. set all cells to dead state)" 
+            onclick="matrixToGrid()">
+            Clear | Reset
         </button>
         <button id="forwards"
             title="Click to go forward one life step. You can also advance by pressing your right arrow key."
             onclick="moveForward()">
             &gt;&gt;
         </button>
-        <label id="population">
-            0
-        </label>
-        <label id="lifeCycles">
-            0
-        </label>
-        <input type="text" maxlength="1" name="frequency" id="frequencyBox">
-        <br><br>
-        <textarea id="historyData" cols="50" rows="5"></textarea>
+        <button title="Perform these actions to play the game of life:
+
+        Clicking return key: this action performs the same action as clicking the Setup button - that is, it populates the grid by randomly assigning alive values to various cells.
+
+        Clicking space key: this action performs the same action as clicking the reset button - that is, it sets every cell to a non-alive (dead) state
+
+        Clicking any cell in the grid: this toggles the selected cell between a live and dead state.">
+            ?
+        </button>
     </div>
 </body>
 
