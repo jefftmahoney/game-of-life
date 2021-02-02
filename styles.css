@@ -16,9 +16,6 @@ div#matrix-container div.alive {
     background-color: lime;
 }
 
-.dead {
-    background-color: #555555;
-}
 
 body {
     background-color: #555555;
@@ -29,6 +26,7 @@ label, input, textarea {
     background-color: black;
     border: 1px solid violet;
     color: violet;
+    margin-top: .5rem;
     padding: .5rem 1rem;
     border-radius: .5rem;
     font-family: monospace;
