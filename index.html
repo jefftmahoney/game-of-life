@@ -11,12 +11,11 @@
 <body onload="matrixToGrid(70)">
     <div id="matrix-container">
     </div>
-    <script src="game-of-life.js"></script>
     <br>
     <div id="button-container">
         <button id="setupButton" 
             title="Click this button to populate the grid with randomly-live-stated cells" 
-            onclick="matrixToGrid(70)">
+            onclick="matrixToGrid(getRate())">
             Setup
         </button>
         <button id="resetButton" 
@@ -38,7 +37,13 @@
         Clicking any cell in the grid: this toggles the selected cell between a live and dead state.">
             ?
         </button>
+        <br>
+        <label for="rateSetter">
+            Set Rate:
+            <input type="number" name="rateSetter" id="rateSetter">
+        </label>
     </div>
+    <script src="game-of-life.js"></script>
 </body>
 
 </html>

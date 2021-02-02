@@ -82,12 +82,23 @@ class Matrix {
   }
 }
 
-
 function moveForward() {
   const existingMatrix = matrixFromGrid()
   const updatedMatrix = Matrix.advance(existingMatrix, Matrix.getLiveStatus, Matrix.getLifeCount)
 
   matrixBackToGrid(updatedMatrix)
+}
+
+function regulate(receivedEvent){
+  const theValue = receivedEvent.target.value
+  const regulatedValue = (theValue < 0) ? (0) : (theValue > 100 ? 100 : theValue)
+
+  document.getElementById('rateSetter').value = regulatedValue
+}
+
+function getRate(){
+  const rateFromControl = document.getElementById('rateSetter').value
+  return rateFromControl ? rateFromControl : 70
 }
 
 function processKeyDown(kde) {
@@ -99,7 +110,7 @@ function processKeyDown(kde) {
       matrixToGrid()
       break
     case 'Enter':
-      matrixToGrid(70)
+      matrixToGrid(getRate())
       break
     default:
       return
@@ -155,3 +166,4 @@ function matrixFromGrid() {
 }
 
 document.addEventListener('keydown', processKeyDown)
+document.getElementById('rateSetter').addEventListener('change', regulate)
