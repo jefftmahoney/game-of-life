@@ -134,7 +134,7 @@ function markupFromNode(node) {
   return `<div data-x="${node.x}" 
     data-y="${node.y}" 
     data-alive="${node.alive}" 
-    class="${node.alive === true ? 'alive' : ''}" 
+    class="${node.alive === true ? 'alive' : 'dead'}" 
     onclick="processNodeClick(${node.x},${node.y},${node.alive})">
   </div>` 
 }
@@ -143,14 +143,14 @@ function matrixToGrid(rate) {
   const NOT_INITIALLY_ALIVE_PERCENTAGE = rate ? rate : 100
   const theNodes = Matrix.generate(NOT_INITIALLY_ALIVE_PERCENTAGE).map((node) => {
     return markupFromNode(node)
-  })
+  }).join('')
   document.getElementById('matrix-container').innerHTML = theNodes
 }
 
 function matrixBackToGrid(matrixToUse) {
   const theNodes = matrixToUse.map((node) => {
     return markupFromNode(node)
-  })
+  }).join('')
   document.getElementById('matrix-container').innerHTML = theNodes
 }
 

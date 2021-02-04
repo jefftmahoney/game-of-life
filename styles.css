@@ -1,36 +1,53 @@
-div#matrix-container {
-    width: 400px;
-    margin: 0;
+.button-container {
+    margin: .5rem auto;
+    width: 500px;
+    text-align: center;
 }
 
-div#matrix-container div {
-    display: inline-block;
-    margin: -3px -3px;
-    width: 20px;
-    height: 20px;
-    background-color: #555555;
-    border: 1px solid violet;
+.container {
+    display: grid;
+    grid-template-columns: 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5%;
+    grid-template-rows: 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5%;
+    width: 300px;
+    height: 300px;
+    border: 2px solid magenta;
+    margin: 0 auto;
+    box-shadow: magenta 0 0 15px 2px;
+}
+.dead {
+    border: 1px solid black;
+    background-color: #444444;
 }
 
-div#matrix-container div.alive {
+.alive {
+    border: 1px solid black;
     background-color: lime;
 }
 
-
 body {
-    background-color: #555555;
+    background-color: #666666;
 }
 
 button,
 label, input, textarea {
     background-color: black;
-    border: 1px solid violet;
-    color: violet;
+    border: 1px solid magenta;
+    color: magenta;
     margin-top: .5rem;
     padding: .5rem 1rem;
     border-radius: .5rem;
     font-family: monospace;
 }
+label {
+    padding: 1rem 1.5rem;
+}
+button:hover {
+    box-shadow: magenta 0 0 10px 2px;
+}
+input:hover {
+    box-shadow: magenta 0 0 10px 2px;
+}
+
 label {
     background-color: transparent;
 }
