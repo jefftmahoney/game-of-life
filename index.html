@@ -9,10 +9,10 @@
 </head>
 
 <body onload="matrixToGrid(70)">
-    <div id="matrix-container">
+    <div id="matrix-container" class="container">
     </div>
     <br>
-    <div id="button-container">
+    <div id="button-container" class="button-container">
         <button id="setupButton" 
             title="Click this button to populate the grid with randomly-live-stated cells" 
             onclick="matrixToGrid(getRate())">
@@ -37,10 +37,11 @@
         Clicking any cell in the grid: this toggles the selected cell between a live and dead state.">
             ?
         </button>
-        <br>
+    </div>
+    <div class="button-container">
         <label for="rateSetter">
             Set Rate:
-            <input type="number" name="rateSetter" id="rateSetter">
+            <input type="number" name="rateSetter" id="rateSetter" title="Use this field to specify what percentage of the cells should start off in a non-alive (i.e. dead) state.  So, in other words, specifying 0 means that all of the cells will begin alive, while 100 means that none will.  The program will choose a default value of 70 if none is provided.">
         </label>
     </div>
     <script src="game-of-life.js"></script>
