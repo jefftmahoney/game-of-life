@@ -55,12 +55,7 @@ class Matrix {
       const canBecomeAlive = numberOfLivingNeighbors === 3
       const canStayAlive = (numberOfLivingNeighbors >= 2 && numberOfLivingNeighbors <= 3)
 
-      if (currentlyAlive === false && canBecomeAlive)
-          return true
-      else if (currentlyAlive && canStayAlive)
-          return true
-      else
-          return false
+      return canBecomeAlive || (currentlyAlive && canStayAlive)
   }
 
   static getUpdated(matrixToExamine, nodeToAdjust) {

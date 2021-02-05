@@ -15,4 +15,3 @@ You can also reset the state of the matrix (i.e. reassign random values to each 
 I deliberately wrote my implementation without consulting others' approaches first.  I did this for the challenge: I enjoy thinking through and solving things (even if, as in this case, the thing involved has been thought through and solved many times previously).  After I was finished, I looked through others' work.  Here are some of them.
 - [Wikipedia Article](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
 - [How to Test and Evaluate a GOL Implementation](http://pi.math.cornell.edu/~lipa/mec/lesson6.html)
-- more to come
